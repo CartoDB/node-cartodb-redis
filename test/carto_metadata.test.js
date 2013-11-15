@@ -1,9 +1,8 @@
 var redis_config = require('./support/config').redis_pool;
-global.environment = { redis: redis_config }
 
 var _           = require('underscore')
     , redis     = require("redis")
-    , MetaData  = require('../lib/carto_metadata')
+    , MetaData  = require('../lib/carto_metadata')(redis_config)
     , Step      = require('step')
     , assert    = require('assert')
 ;
