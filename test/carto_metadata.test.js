@@ -4,8 +4,9 @@ global.environment = { redis: redis_config }
 var _           = require('underscore')
     , redis     = require("redis")
     , MetaData  = require('../lib/carto_metadata')
+    , Step      = require('step')
     , assert    = require('assert')
-    , tests  = module.exports = {};
+;
 
 suite('metadata', function() {
 
@@ -25,6 +26,28 @@ test('test can retrieve id from header and redis', function(done){
         assert.equal(data, '1');
         done();
     });
+});
+
+test('can retrieve privacy', function(done){
+    var req = {headers: {host: 'vizzuality.cartodb.com'}};
+    Step (
+      function getPrivate() {
+        MetaData.getTablePrivacy('cartodb_test_user_1_db', 'private', this);
+      },
+      function getPublic(err, data){
+        assert.ok(!err, err);
+        assert.equal(data, '0'); // private has privacy=0
+        MetaData.getTablePrivacy('cartodb_test_user_1_db', 'public', this);
+      },
+      function check(err, data){
+        assert.ok(!err, err);
+        assert.equal(data, '1'); // public has privacy=1
+        return null;
+      },
+      function finish(err) {
+        done(err);
+      }
+    );
 });
 
 });

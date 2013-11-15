@@ -1,7 +1,8 @@
-0.0.2 -- 2013-MM-DD
+0.1.0 -- 2013-MM-DD
 -------------------
 
  - Add API test (#1)
+ - Add getTablePrivacy, drop .authorize
 
 0.0.1 -- 2013-11-15
 -------------------

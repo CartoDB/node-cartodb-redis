@@ -25,6 +25,8 @@ echo "HSET rails:users:vizzuality id 1" | redis-cli -p ${REDIS_PORT} -n 5
 echo "HSET rails:users:vizzuality database_name ${TEST_DB}" | redis-cli -p ${REDIS_PORT} -n 5
 echo "HSET rails:users:vizzuality" "map_key" "1234" | redis-cli -p ${REDIS_PORT} -n 5
 echo "SADD rails:users:vizzuality:map_key 1235" | redis-cli -p ${REDIS_PORT} -n 5
+echo "HSET rails:cartodb_test_user_1_db:private" "privacy" "0" | redis-cli -p ${REDIS_PORT} -n 0
+echo "HSET rails:cartodb_test_user_1_db:public" "privacy" "1" | redis-cli -p ${REDIS_PORT} -n 0
 echo "hset rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR consumer_key fZeNGv5iYayvItgDYHUbot1Ukb5rVyX6QAg8GaY2" | redis-cli -p ${REDIS_PORT} -n 3
 echo "hset rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR consumer_secret IBLCvPEefxbIiGZhGlakYV4eM8AbVSwsHxwEYpzx" | redis-cli -p ${REDIS_PORT} -n 3
 echo "hset rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR access_token_token l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR" | redis-cli -p ${REDIS_PORT} -n 3
