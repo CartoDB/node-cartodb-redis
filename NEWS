@@ -4,6 +4,7 @@
  - Add API test (#1)
  - Add getTablePrivacy, drop .authorize
  - Turn CartoDBMetadata to a real class (#3)
+ - Add checkAPIKey alias for checkMapKey
 
 0.0.1 -- 2013-11-15
 -------------------
