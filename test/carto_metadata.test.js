@@ -9,6 +9,7 @@ var _           = require('underscore')
 
 suite('metadata', function() {
 
+// NOTE: deprecated in 0.2.0
 test('test can retrieve database name from header and redis', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
     
@@ -18,10 +19,39 @@ test('test can retrieve database name from header and redis', function(done){
     });
 });
 
+test('can retrieve database name for username', function(done){
+    MetaData.getUserDBName('vizzuality', function(err, data){
+        assert.equal(data, 'cartodb_test_user_1_db');
+        done();
+    });
+});
+
+test('can retrieve database host for username', function(done){
+    MetaData.getUserDBHost('vizzuality', function(err, data){
+        assert.equal(data, 'localhost');
+        done();
+    });
+});
+
+test('can retrieve database password for username', function(done){
+    MetaData.getUserDBPass('vizzuality', function(err, data){
+        assert.equal(data, 'secret');
+        done();
+    });
+});
+
+// NOTE: deprecated in 0.2.0
 test('test can retrieve id from header and redis', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
 
     MetaData.getId(req, function(err, data){
+        assert.equal(data, '1');
+        done();
+    });
+});
+
+test('retrieve id for username', function(done){
+    MetaData.getUserId('vizzuality', function(err, data){
         assert.equal(data, '1');
         done();
     });
@@ -47,6 +77,13 @@ test('can retrieve privacy', function(done){
         done(err);
       }
     );
+});
+
+test('can retrieve map key', function(done){
+    MetaData.getUserMapKey('vizzuality', function(err, data){
+        assert.equal(data, '1234');
+        done();
+    });
 });
 
 });

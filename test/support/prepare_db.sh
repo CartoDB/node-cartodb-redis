@@ -23,6 +23,8 @@ die() {
 echo "preparing redis..."
 echo "HSET rails:users:vizzuality id 1" | redis-cli -p ${REDIS_PORT} -n 5
 echo "HSET rails:users:vizzuality database_name ${TEST_DB}" | redis-cli -p ${REDIS_PORT} -n 5
+echo "HSET rails:users:vizzuality database_host localhost" | redis-cli -p ${REDIS_PORT} -n 5
+echo "HSET rails:users:vizzuality database_password secret" | redis-cli -p ${REDIS_PORT} -n 5
 echo "HSET rails:users:vizzuality" "map_key" "1234" | redis-cli -p ${REDIS_PORT} -n 5
 echo "SADD rails:users:vizzuality:map_key 1235" | redis-cli -p ${REDIS_PORT} -n 5
 echo "HSET rails:cartodb_test_user_1_db:private" "privacy" "0" | redis-cli -p ${REDIS_PORT} -n 0

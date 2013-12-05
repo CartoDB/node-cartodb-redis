@@ -1,5 +1,10 @@
-0.1.1 -- 2013-MM-DD
+0.2.0 -- 2013-MM-DD
 -------------------
+
+ - New methods: getUserId, getUserDBName, getUserDBHost,
+                getUserDBPass, getUserMapKey
+ - Deprecate methods: getId, getDatabase, getDatabaseHost,
+                      getDatabasePassword, getMapMetadata
 
 0.1.0 -- 2013-11-15
 -------------------
