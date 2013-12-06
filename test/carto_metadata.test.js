@@ -1,7 +1,6 @@
 var redis_config = require('./support/config').redis_pool;
 
 var _           = require('underscore')
-    , redis     = require("redis")
     , MetaData  = require('../lib/carto_metadata')(redis_config)
     , Step      = require('step')
     , assert    = require('assert')
