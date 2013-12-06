@@ -90,7 +90,32 @@ test('can retrieve table privacy', function(done){
     );
 });
 
-test('can retrieve table geometry type', function(done){
+// NOTE: deprecated in 0.2.0
+test('can retrieve table geometry type from request header and params', function(done){
+    var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {} };
+    Step (
+      function getPrivate() {
+        req.params.table = 'private';
+        MetaData.getGeometryType(req, this);
+      },
+      function getPublic(err, data){
+        if ( err ) throw err;
+        req.params.table = 'public';
+        assert.equal(data, 'point'); 
+        MetaData.getGeometryType(req, this);
+      },
+      function check(err, data){
+        if ( err ) throw err;
+        assert.equal(data, 'geometry'); 
+        return null;
+      },
+      function finish(err) {
+        done(err);
+      }
+    );
+});
+
+test('can retrieve table geometry type from username and tablename', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
     Step (
       function getPrivate() {
