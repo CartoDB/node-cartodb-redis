@@ -26,6 +26,17 @@ test('can retrieve database name for username', function(done){
     });
 });
 
+// NOTE: deprecated in 0.2.0
+test('test can retrieve database host from header and redis', function(done){
+    var req = {headers: {host: 'vizzuality.cartodb.com'}};
+    
+    MetaData.getDatabaseHost(req, function(err, data){
+        assert.equal(data, 'localhost');
+        done();
+    });
+});
+
+
 test('can retrieve database host for username', function(done){
     MetaData.getUserDBHost('vizzuality', function(err, data){
         assert.equal(data, 'localhost');
