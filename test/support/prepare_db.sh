@@ -12,8 +12,6 @@ TESTENV=./config.js
 TEST_DB="cartodb_test_user_1_db"
 REDIS_PORT=`node -e "console.log(require('${TESTENV}').redis_pool.port || '6336')"`
 
-export PGHOST PGPORT
-
 die() {
         msg=$1
         echo "${msg}" >&2

@@ -67,6 +67,7 @@ if test x"$OPT_CREATE" = xyes; then
   echo "port ${REDIS_PORT}" | redis-server - > ${BASEDIR}/test.log &
   PID_REDIS=$!
   echo ${PID_REDIS} > ${BASEDIR}/redis.pid
+  sleep 1 # wait a bit for it to start (there must be a better way!)
 
   echo "Preparing the environment"
   cd ${BASEDIR}/test/support; sh prepare_db.sh || die "database preparation failure"; cd -
