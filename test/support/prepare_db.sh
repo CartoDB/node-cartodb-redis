@@ -33,7 +33,9 @@ EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 0
 HSET rails:cartodb_test_user_1_db:private privacy 0
+HSET rails:cartodb_test_user_1_db:private the_geom_type point
 HSET rails:cartodb_test_user_1_db:public privacy 1
+HSET rails:cartodb_test_user_1_db:public the_geom_type geometry
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 3

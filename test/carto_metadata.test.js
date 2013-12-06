@@ -57,7 +57,7 @@ test('retrieve id for username', function(done){
     });
 });
 
-test('can retrieve privacy', function(done){
+test('can retrieve table privacy', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
     Step (
       function getPrivate() {
@@ -71,6 +71,28 @@ test('can retrieve privacy', function(done){
       function check(err, data){
         assert.ok(!err, err);
         assert.equal(data, '1'); // public has privacy=1
+        return null;
+      },
+      function finish(err) {
+        done(err);
+      }
+    );
+});
+
+test('can retrieve table geometry type', function(done){
+    var req = {headers: {host: 'vizzuality.cartodb.com'}};
+    Step (
+      function getPrivate() {
+        MetaData.getTableGeometryType('cartodb_test_user_1_db', 'private', this);
+      },
+      function getPublic(err, data){
+        if ( err ) throw err;
+        assert.equal(data, 'point'); 
+        MetaData.getTableGeometryType('cartodb_test_user_1_db', 'public', this);
+      },
+      function check(err, data){
+        if ( err ) throw err;
+        assert.equal(data, 'geometry'); 
         return null;
       },
       function finish(err) {

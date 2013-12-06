@@ -2,9 +2,10 @@
 -------------------
 
  - New methods: getUserId, getUserDBName, getUserDBHost,
-                getUserDBPass, getUserMapKey
+                getUserDBPass, getUserMapKey, getTableGeometryType
  - Deprecate methods: getId, getDatabase, getDatabaseHost,
-                      getDatabasePassword, getMapMetadata
+                      getDatabasePassword, getMapMetadata,
+                      getGeometryType
 
 0.1.0 -- 2013-11-15
 -------------------
