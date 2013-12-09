@@ -19,30 +19,29 @@ die() {
 }
 
 echo "preparing redis..."
-#TODO: pipeline
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
-HSET rails:users:vizzuality id 1
-HSET rails:users:vizzuality database_name ${TEST_DB}
-HSET rails:users:vizzuality database_host localhost
-HSET rails:users:vizzuality database_password secret
-HSET rails:users:vizzuality map_key 1234
+HMSET rails:users:vizzuality id 1 \
+                             database_name ${TEST_DB} \
+                             database_host localhost \
+                             database_password secret map_key 1234
 SADD rails:users:vizzuality:map_key 1235
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 0
-HSET rails:cartodb_test_user_1_db:private privacy 0
-HSET rails:cartodb_test_user_1_db:private the_geom_type point
-HSET rails:cartodb_test_user_1_db:public privacy 1
-HSET rails:cartodb_test_user_1_db:public the_geom_type geometry
+HMSET rails:cartodb_test_user_1_db:private privacy 0 \
+                                           the_geom_type point
+HMSET rails:cartodb_test_user_1_db:public privacy 1 \
+                                          the_geom_type geometry
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 3
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR consumer_key fZeNGv5iYayvItgDYHUbot1Ukb5rVyX6QAg8GaY2
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR consumer_secret IBLCvPEefxbIiGZhGlakYV4eM8AbVSwsHxwEYpzx
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR access_token_token l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR access_token_secret 22zBIek567fMDEebzfnSdGe8peMFVFqAreOENaDK
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR user_id 1
-HSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR time sometime
+HMSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR \
+  consumer_key fZeNGv5iYayvItgDYHUbot1Ukb5rVyX6QAg8GaY2 \
+  consumer_secret IBLCvPEefxbIiGZhGlakYV4eM8AbVSwsHxwEYpzx \
+  access_token_token l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR \
+  access_token_secret 22zBIek567fMDEebzfnSdGe8peMFVFqAreOENaDK \
+  user_id 1 \
+  time sometime 
 EOF
 
 echo "ok, you can run test now"
