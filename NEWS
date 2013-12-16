@@ -1,4 +1,4 @@
-0.3.0 -- 201Y-MM-DD
+0.3.0 -- 2013-12-16
 -------------------
 
  - Use cartodb/node-mredis for redis pooling (#4)
