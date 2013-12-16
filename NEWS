@@ -1,7 +1,9 @@
-0.2.1 -- 201Y-MM-DD
+0.3.0 -- 201Y-MM-DD
 -------------------
 
  - Use cartodb/node-mredis for redis pooling (#4)
+ - New methods: getTableInfowindow
+ - Deprecate methods: getInfowindow, checkMapKey
 
 0.2.0 -- 2013-12-06
 -------------------
