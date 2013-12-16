@@ -2,8 +2,9 @@
 -------------------
 
  - Use cartodb/node-mredis for redis pooling (#4)
- - New methods: getTableInfowindow
- - Deprecate methods: getInfowindow, checkMapKey
+ - New methods: getTableInfowindow, getTableMapMetadata
+ - Deprecate methods: getInfowindow, getMapMetadata, checkMapKey,
+                      userFromHostname
 
 0.2.0 -- 2013-12-06
 -------------------
