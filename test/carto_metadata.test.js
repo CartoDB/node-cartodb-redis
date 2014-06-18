@@ -143,4 +143,31 @@ test('can retrieve map key', function(done){
     });
 });
 
+test('retrieves sync slaves if they exist', function(done){
+    MetaData.getDBSyncSlaves('1.2.3.4', function(err, data){
+        assert.deepEqual(data, ['1.2.3.5','1.2.3.6']);
+        done();
+    });
+});
+
+test('retrieves empty if there are no sync slaves', function(done){
+    MetaData.getDBSyncSlaves('2.3.4.5', function(err, data){
+        assert.deepEqual(data, []);
+        done();
+    });
+});
+
+test('retrieves async slaves if they exist', function(done){
+    MetaData.getDBAsyncSlaves('1.2.3.4', function(err, data){
+        assert.deepEqual(data, ['1.2.3.7','1.2.3.8']);
+        done();
+    });
+});
+
+test('retrieves empty if there are no async slaves', function(done){
+    MetaData.getDBAsyncSlaves('2.3.4.5', function(err, data){
+        assert.deepEqual(data, []);
+        done();
+    });
+});
 });
