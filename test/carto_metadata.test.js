@@ -145,7 +145,7 @@ test('can retrieve map key', function(done){
 
 test('retrieves sync slaves if they exist', function(done){
     MetaData.getDBSyncSlaves('1.2.3.4', function(err, data){
-        assert.deepEqual(data, ['1.2.3.5','1.2.3.6']);
+        assert.deepEqual(data.sort(), ['1.2.3.5','1.2.3.6'].sort());
         done();
     });
 });
@@ -159,7 +159,7 @@ test('retrieves empty if there are no sync slaves', function(done){
 
 test('retrieves async slaves if they exist', function(done){
     MetaData.getDBAsyncSlaves('1.2.3.4', function(err, data){
-        assert.deepEqual(data, ['1.2.3.7','1.2.3.8']);
+        assert.deepEqual(data.sort(), ['1.2.3.7','1.2.3.8'].sort());
         done();
     });
 });
