@@ -1,4 +1,4 @@
-0.4.0 -- 2014-MM-DD
+0.4.0 -- 2014-06-23
 -------------------
  - New methods: getDBSyncSlaves, getDBAsyncSlaves
  - Switch to 3-clause BSD license (#8)
