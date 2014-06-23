@@ -1,3 +1,6 @@
+0.5.0 -- 2014-XX-XX
+-------------------
+
 0.4.0 -- 2014-06-23
 -------------------
  - New methods: getDBSyncSlaves, getDBAsyncSlaves
