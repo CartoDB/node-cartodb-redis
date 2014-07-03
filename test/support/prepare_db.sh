@@ -23,6 +23,7 @@ cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
 HMSET rails:users:vizzuality id 1 \
                              database_name ${TEST_DB} \
                              database_host localhost \
+                             database_publicuser publicuser \
                              database_password secret map_key 1234
 SADD rails:users:vizzuality:map_key 1235
 EOF

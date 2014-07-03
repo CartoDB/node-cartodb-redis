@@ -1,5 +1,6 @@
 0.5.0 -- 2014-XX-XX
 -------------------
+ - New method to retrieve database connection params
 
 0.4.0 -- 2014-06-23
 -------------------

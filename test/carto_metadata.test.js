@@ -170,4 +170,25 @@ test('retrieves empty if there are no async slaves', function(done){
         done();
     });
 });
+
+    test('can retrieve database connection params for username', function(done){
+        MetaData.getUserDBConnectionParams('vizzuality', function(err, dbparams) {
+            assert.equal(err, null, "Did not expect an err");
+            assert.deepEqual(dbparams, {
+                "dbhost": "localhost",
+                "dbname": "cartodb_test_user_1_db",
+                "dbuser": "publicuser"
+            });
+            done();
+        });
+    });
+
+    test('fails to retrieve database connection params for invalid user', function(done){
+        MetaData.getUserDBConnectionParams('fakeuser', function(err, dbparams) {
+            assert.notEqual(err, null);
+            assert.equal(dbparams, null);
+            done();
+        });
+    });
+
 });
