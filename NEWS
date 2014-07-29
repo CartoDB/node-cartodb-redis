@@ -1,6 +1,7 @@
 0.6.0 -- 2014-mm-dd
 -------------------
 - Adds support to multiple commands
+- Use multiple commands in incrementing mapviews method
 - New method to retrieve all database params for a given user
 
 0.5.0 -- 2014-07-03
