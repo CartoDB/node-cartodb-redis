@@ -206,4 +206,16 @@ test('retrieves empty if there are no async slaves', function(done){
         });
     });
 
+    test('can retrieve all db params for username', function(done){
+        MetaData.getUserDBPublicConnectionParams('vizzuality', function(err, dbparams) {
+            assert.equal(err, null, "Did not expect an err");
+            assert.deepEqual(dbparams, {
+                "dbhost": "localhost",
+                "dbname": "cartodb_test_user_1_db",
+                "dbpublicuser": "publicuser"
+            });
+            done();
+        });
+    });
+
 });
