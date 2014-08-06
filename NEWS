@@ -1,5 +1,6 @@
 0.8.0 -- 2014-mm-dd
 -------------------
+- New method to retrieve oauth hash values
 
 0.7.0 -- 2014-08-05
 -------------------
