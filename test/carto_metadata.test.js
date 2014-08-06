@@ -218,4 +218,26 @@ test('retrieves empty if there are no async slaves', function(done){
         });
     });
 
+    test('can retrieve oauth values for given oauth key', function(done) {
+        MetaData.getOAuthHash('l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR', function(err, oAuthValues) {
+            assert.equal(err, null);
+            assert.notEqual(oAuthValues, null);
+            assert.equal(oAuthValues.consumer_key, 'fZeNGv5iYayvItgDYHUbot1Ukb5rVyX6QAg8GaY2');
+            assert.equal(oAuthValues.consumer_secret, 'IBLCvPEefxbIiGZhGlakYV4eM8AbVSwsHxwEYpzx');
+            assert.equal(oAuthValues.access_token_token, 'l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR');
+            assert.equal(oAuthValues.access_token_secret, '22zBIek567fMDEebzfnSdGe8peMFVFqAreOENaDK');
+            assert.equal(oAuthValues.time, 'sometime');
+            assert.equal(oAuthValues.user_id, 1);
+            done();
+        });
+    });
+
+    test('invalid oauth keys returns empty object instead of null value', function(done) {
+        MetaData.getOAuthHash('foo', function(err, oAuthValues) {
+            assert.equal(err, null);
+            assert.notEqual(oAuthValues, null);
+            assert.deepEqual(oAuthValues, {});
+            done();
+        });
+    });
 });
