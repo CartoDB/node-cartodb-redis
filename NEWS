@@ -1,4 +1,4 @@
-0.8.0 -- 2014-mm-dd
+0.8.0 -- 2014-08-06
 -------------------
 - New method to retrieve oauth hash values
 - Upgrades redis-mpool dependency to 0.0.4
