@@ -1,4 +1,4 @@
-0.9.0 -- 2014-mm-dd
+0.9.0 -- 2014-08-13
 -------------------
 - Upgrades dependencies:
     - redis-mpool
