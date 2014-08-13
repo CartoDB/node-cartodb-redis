@@ -4,6 +4,7 @@
     - redis-mpool
     - underscore
     - strftime
+- Specifies name in the redis pool
 
 0.8.0 -- 2014-08-06
 -------------------
