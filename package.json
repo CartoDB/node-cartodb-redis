@@ -30,5 +30,5 @@
     "scripts": {
         "test": "./run_tests.sh test/*"
     },
-    "engine": { "node": ">= 0.6 < 0.9" }
+    "engine": { "node": ">= 0.6 < 0.11" }
 }
