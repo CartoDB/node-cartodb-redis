@@ -258,4 +258,43 @@ test('retrieves empty if there are no async slaves', function(done){
             done();
         })
     });
+
+    test('log is called if elapsed time is above configured one', function(done) {
+        var logWasCalled = false,
+            elapsedThreshold = 25,
+            enabledSlowQueriesConfig = {
+                slowQueries: {
+                    log: true,
+                    elapsedThreshold: elapsedThreshold
+                }
+            };
+
+        var times = 0;
+        var dateNowFunc = Date.now;
+        Date.now = function () {
+            return times++ * elapsedThreshold * 2;
+        };
+        consoleLogFunc = console.log;
+        console.log = function(what) {
+            var whatObj;
+            try {
+                whatObj = JSON.parse(what);
+            } catch (e) {
+                // pass
+            }
+            logWasCalled = whatObj && whatObj.action && whatObj.action === 'query';
+            consoleLogFunc.apply(console, arguments);
+        }
+
+        var cartoMetadata = require('../lib/carto_metadata')(_.extend(redis_config, enabledSlowQueriesConfig));
+
+        cartoMetadata.getAllUserDBParams('vizzuality', function(err, dbParams) {
+            console.log = consoleLogFunc;
+            Date.now = dateNowFunc;
+
+            assert.ok(logWasCalled);
+
+            done();
+        })
+    });
 });
