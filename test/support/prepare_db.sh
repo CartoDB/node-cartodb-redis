@@ -50,6 +50,10 @@ SADD db:1.2.3.4:sync_slaves 1.2.3.5 1.2.3.6
 SADD db:1.2.3.4:async_slaves 1.2.3.7 1.2.3.8
 EOF
 
+cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
+ZINCRBY user:vizzuality:mapviews:global 1 20140101
+EOF
+
 echo "ok, you can run test now"
 
 
