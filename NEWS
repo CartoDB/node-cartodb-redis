@@ -1,4 +1,4 @@
-0.10.0 -- 2014-mm-dd
+0.10.0 -- 2014-08-19
 --------------------
 - Add test for map views
 - Add support to log slow queries
