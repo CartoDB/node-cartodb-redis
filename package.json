@@ -21,6 +21,7 @@
     "dependencies": {
         "underscore": "~1.6.0",
         "strftime": "~0.8.2",
+        "dot": "~1.0.2",
         "redis-mpool": "git://github.com/CartoDB/node-redis-mpool.git#0.1.0"
     },
     "devDependencies": {

@@ -2,6 +2,7 @@
 --------------------
 - Do not log slow queries by default
 - Remove step dependency
+- Replace underscore templates with a more performant module for templating [doT](https://github.com/olado/doT)
 
 0.10.0 -- 2014-08-19
 --------------------
