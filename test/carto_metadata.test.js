@@ -2,7 +2,6 @@ var redis_config = require('./support/config').redis_pool;
 
 var _           = require('underscore')
     , MetaData  = require('../lib/carto_metadata')(redis_config)
-    , Step      = require('step')
     , assert    = require('assert')
 ;
 
@@ -67,74 +66,58 @@ test('retrieve id for username', function(done){
     });
 });
 
-test('can retrieve table privacy', function(done){
+test('can retrieve table privacy for public table', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
-    Step (
-      function getPrivate() {
-        MetaData.getTablePrivacy('cartodb_test_user_1_db', 'private', this);
-      },
-      function getPublic(err, data){
+    MetaData.getTablePrivacy('cartodb_test_user_1_db', 'public', function(err, privacy) {
         assert.ok(!err, err);
-        assert.equal(data, '0'); // private has privacy=0
-        MetaData.getTablePrivacy('cartodb_test_user_1_db', 'public', this);
-      },
-      function check(err, data){
-        assert.ok(!err, err);
-        assert.equal(data, '1'); // public has privacy=1
-        return null;
-      },
-      function finish(err) {
-        done(err);
-      }
-    );
+        assert.equal(privacy, '1'); // public has privacy=1
+        done();
+    });
 });
+
+    test('can retrieve table privacy for private table', function(done){
+        var req = {headers: {host: 'vizzuality.cartodb.com'}};
+        MetaData.getTablePrivacy('cartodb_test_user_1_db', 'private', function(err, privacy) {
+            assert.ok(!err, err);
+            assert.equal(privacy, '0'); // private has privacy=0
+            done();
+        });
+    });
 
 // NOTE: deprecated in 0.2.0
-test('can retrieve table geometry type from request header and params', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {} };
-    Step (
-      function getPrivate() {
-        req.params.table = 'private';
-        MetaData.getGeometryType(req, this);
-      },
-      function getPublic(err, data){
-        if ( err ) throw err;
-        req.params.table = 'public';
-        assert.equal(data, 'point'); 
-        MetaData.getGeometryType(req, this);
-      },
-      function check(err, data){
-        if ( err ) throw err;
-        assert.equal(data, 'geometry'); 
-        return null;
-      },
-      function finish(err) {
-        done(err);
-      }
-    );
+test('can retrieve table geometry type from request header and params for public table', function(done){
+    var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {table: 'public'} };
+
+    MetaData.getGeometryType(req, function(err, geometryType) {
+        assert.equal(geometryType, 'geometry');
+        done();
+    });
 });
 
-test('can retrieve table geometry type from username and tablename', function(done){
+    // NOTE: deprecated in 0.2.0
+    test('can retrieve table geometry type from request header and params for private table', function(done){
+        var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {table: 'private'} };
+        MetaData.getGeometryType(req, function(err, geometryType) {
+            assert.equal(geometryType, 'point');
+            done();
+        });
+    });
+
+test('can retrieve table geometry type from username and tablename for public table', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
-    Step (
-      function getPrivate() {
-        MetaData.getTableGeometryType('cartodb_test_user_1_db', 'private', this);
-      },
-      function getPublic(err, data){
-        if ( err ) throw err;
-        assert.equal(data, 'point'); 
-        MetaData.getTableGeometryType('cartodb_test_user_1_db', 'public', this);
-      },
-      function check(err, data){
-        if ( err ) throw err;
-        assert.equal(data, 'geometry'); 
-        return null;
-      },
-      function finish(err) {
-        done(err);
-      }
-    );
+    MetaData.getTableGeometryType('cartodb_test_user_1_db', 'public', function(err, geometryType) {
+        assert.equal(geometryType, 'geometry');
+        done();
+    });
 });
+
+    test('can retrieve table geometry type from username and tablename for private table', function(done){
+        var req = {headers: {host: 'vizzuality.cartodb.com'}};
+        MetaData.getTableGeometryType('cartodb_test_user_1_db', 'private', function(err, geometryType) {
+            assert.equal(geometryType, 'point');
+            done();
+        });
+    });
 
 test('can retrieve map key', function(done){
     MetaData.getUserMapKey('vizzuality', function(err, data){
@@ -170,6 +153,36 @@ test('retrieves empty if there are no async slaves', function(done){
         done();
     });
 });
+
+    test('infowindow', function(done) {
+        var req = {
+            headers: {
+                host: 'vizzuality.cartodb.com'
+            },
+            params: {
+                table: 'public'
+            }
+        };
+        MetaData.getInfowindow(req, function(err, info) {
+            assert.equal(info, 'wadus');
+            done();
+        });
+    });
+
+    test('infowindow', function(done) {
+        var req = {
+            headers: {
+                host: 'vizzuality.cartodb.com'
+            },
+            params: {
+                table: 'public'
+            }
+        };
+        MetaData.getMapMetadata(req, function(err, meta) {
+            assert.equal(meta, 'foobar');
+            done();
+        });
+    });
 
     test('can retrieve database connection params for username', function(done){
         MetaData.getUserDBConnectionParams('vizzuality', function(err, dbparams) {

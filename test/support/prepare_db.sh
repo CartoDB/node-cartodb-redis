@@ -32,6 +32,8 @@ cat <<EOF | redis-cli -p ${REDIS_PORT} -n 0
 HMSET rails:cartodb_test_user_1_db:private privacy 0 \
                                            the_geom_type point
 HMSET rails:cartodb_test_user_1_db:public privacy 1 \
+                                          infowindow wadus \
+                                          map_metadata foobar \
                                           the_geom_type geometry
 EOF
 
@@ -51,6 +53,8 @@ SADD db:1.2.3.4:async_slaves 1.2.3.7 1.2.3.8
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
+ZREMRANGEBYSCORE user:vizzuality:mapviews:global -inf +inf
+ZREMRANGEBYSCORE user:vizzuality:mapviews:stat_tag:foo -inf +inf
 ZINCRBY user:vizzuality:mapviews:global 1 20140101
 EOF
 

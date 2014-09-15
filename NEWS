@@ -1,6 +1,7 @@
 0.10.1 -- 2014-mm-dd
 --------------------
 - Do not log slow queries by default
+- Remove step dependency
 
 0.10.0 -- 2014-08-19
 --------------------
