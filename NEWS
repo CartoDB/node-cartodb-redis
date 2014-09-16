@@ -1,4 +1,4 @@
-0.10.1 -- 2014-mm-dd
+0.11.0 -- 2014-09-16
 --------------------
 - Do not log slow queries by default
 - Remove step dependency
