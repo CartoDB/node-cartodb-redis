@@ -26,6 +26,7 @@ HMSET rails:users:vizzuality id 1 \
                              database_publicuser publicuser \
                              database_password secret map_key 1234
 SADD rails:users:vizzuality:map_key 1235
+HSET limits:tiler:vizzuality render 2000
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 0

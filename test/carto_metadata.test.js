@@ -306,4 +306,14 @@ test('retrieves empty if there are no async slaves', function(done){
             done();
         })
     });
+
+    test('can retrieve render limit and it is a number', function(done){
+        MetaData.getTilerRenderLimit('vizzuality', function(err, renderLimit) {
+            assert.ok(!err);
+            assert.ok(_.isNumber(renderLimit));
+            assert.equal(renderLimit, 2000);
+            done();
+        });
+    });
+
 });
