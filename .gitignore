@@ -2,3 +2,4 @@ node_modules*
 redis.pid
 test.log
 npm-debug.log
+.idea/
