@@ -1,5 +1,6 @@
-0.11.1 -- 2014-mm-dd
+0.12.0 -- 2015-mm-dd
 --------------------
+- Adds a method to retrieve the render time limit
 
 0.11.0 -- 2014-09-16
 --------------------
