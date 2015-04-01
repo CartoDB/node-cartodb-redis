@@ -67,7 +67,6 @@ test('retrieve id for username', function(done){
 });
 
 test('can retrieve table privacy for public table', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}};
     MetaData.getTablePrivacy('cartodb_test_user_1_db', 'public', function(err, privacy) {
         assert.ok(!err, err);
         assert.equal(privacy, '1'); // public has privacy=1
@@ -76,7 +75,6 @@ test('can retrieve table privacy for public table', function(done){
 });
 
     test('can retrieve table privacy for private table', function(done){
-        var req = {headers: {host: 'vizzuality.cartodb.com'}};
         MetaData.getTablePrivacy('cartodb_test_user_1_db', 'private', function(err, privacy) {
             assert.ok(!err, err);
             assert.equal(privacy, '0'); // private has privacy=0
@@ -104,7 +102,6 @@ test('can retrieve table geometry type from request header and params for public
     });
 
 test('can retrieve table geometry type from username and tablename for public table', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}};
     MetaData.getTableGeometryType('cartodb_test_user_1_db', 'public', function(err, geometryType) {
         assert.equal(geometryType, 'geometry');
         done();
@@ -112,7 +109,6 @@ test('can retrieve table geometry type from username and tablename for public ta
 });
 
     test('can retrieve table geometry type from username and tablename for private table', function(done){
-        var req = {headers: {host: 'vizzuality.cartodb.com'}};
         MetaData.getTableGeometryType('cartodb_test_user_1_db', 'private', function(err, geometryType) {
             assert.equal(geometryType, 'point');
             done();
@@ -258,7 +254,7 @@ test('retrieves empty if there are no async slaves', function(done){
         var getMapViewKeyFunc = MetaData.getMapViewKey;
         MetaData.getMapViewKey = function() {
             return '20140101';
-        }
+        };
         MetaData.incMapviewCount('vizzuality', 'foo', function(err, values) {
             MetaData.getMapViewKey = getMapViewKeyFunc;
 
@@ -287,7 +283,7 @@ test('retrieves empty if there are no async slaves', function(done){
         Date.now = function () {
             return times++ * elapsedThreshold * 2;
         };
-        consoleLogFunc = console.log;
+        var consoleLogFunc = console.log;
         console.log = function(what) {
             var whatObj;
             try {
@@ -297,11 +293,11 @@ test('retrieves empty if there are no async slaves', function(done){
             }
             logWasCalled = whatObj && whatObj.action && whatObj.action === 'query';
             consoleLogFunc.apply(console, arguments);
-        }
+        };
 
         var cartoMetadata = require('../lib/carto_metadata')(_.extend(redis_config, enabledSlowQueriesConfig));
 
-        cartoMetadata.getAllUserDBParams('vizzuality', function(err, dbParams) {
+        cartoMetadata.getAllUserDBParams('vizzuality', function(/*err, dbParams*/) {
             console.log = consoleLogFunc;
             Date.now = dateNowFunc;
 
