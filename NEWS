@@ -1,6 +1,6 @@
 0.12.1 -- 2015-mm-dd
 --------------------
-
+- Render time limit only returns as number if there is a value for the user
 
 0.12.0 -- 2015-04-01
 --------------------

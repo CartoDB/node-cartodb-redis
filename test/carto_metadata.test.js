@@ -316,4 +316,13 @@ test('retrieves empty if there are no async slaves', function(done){
         });
     });
 
+    test('if render limit does not exist it returns as the stored value and not as number', function(done){
+        MetaData.getTilerRenderLimit('nonexistent', function(err, renderLimit) {
+            assert.ok(!err);
+            assert.ok(!_.isNumber(renderLimit));
+            assert.equal(renderLimit, null);
+            done();
+        });
+    });
+
 });
