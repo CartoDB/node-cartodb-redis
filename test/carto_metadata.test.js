@@ -250,7 +250,7 @@ test('retrieves empty if there are no async slaves', function(done){
         });
     });
 
-    test('incMapviewCount increments both counters', function(done) {
+    test('incMapviewCount increments tree counters', function(done) {
         var getMapViewKeyFunc = MetaData.getMapViewKey;
         MetaData.getMapViewKey = function() {
             return '20140101';
@@ -258,11 +258,13 @@ test('retrieves empty if there are no async slaves', function(done){
         MetaData.incMapviewCount('vizzuality', 'foo', function(err, values) {
             MetaData.getMapViewKey = getMapViewKeyFunc;
 
-            assert.equal(values.length, 2, 'expected two values, got ' + values.length);
+            assert.equal(values.length, 3, 'expected three values, got ' + values.length);
             var global = values[0];
             var tag = values[1];
+            var tagTotal = values[2];
             assert.equal(global, 2);
             assert.equal(tag, 1);
+            assert.equal(tagTotal, 1);
 
             done();
         })
