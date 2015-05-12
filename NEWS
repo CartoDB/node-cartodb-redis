@@ -1,5 +1,6 @@
-0.12.2 -- 2015-mm-dd
+0.13.0 -- 2015-mm-dd
 --------------------
+- Increment stat_tag total counter besides date ones
 
 0.12.1 -- 2015-04-07
 --------------------
