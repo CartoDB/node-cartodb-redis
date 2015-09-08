@@ -4,3 +4,7 @@ stored in redis database.
 See http://cartodb.com
 
 [![Build Status](https://travis-ci.org/CartoDB/node-cartodb-redis.png)](http://travis-ci.org/CartoDB/node-cartodb-redis)
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md).
