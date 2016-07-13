@@ -1,6 +1,7 @@
 0.13.1 -- 2015-mm-dd
 --------------------
 - Removes strftime dependency
+- Upgrades redis-mpool to 0.4.0.
 
 0.13.0 -- 2015-05-12
 --------------------
