@@ -1,4 +1,4 @@
-0.13.1 -- 2015-mm-dd
+0.13.1 -- 2016-07-13
 --------------------
 - Removes strftime dependency.
 - Upgrades redis-mpool to 0.4.0.
