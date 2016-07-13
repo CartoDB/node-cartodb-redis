@@ -1,9 +1,9 @@
 var redis_config = require('./support/config').redis_pool;
 
-var _           = require('underscore')
-    , MetaData  = require('../lib/carto_metadata')(redis_config)
-    , assert    = require('assert')
-;
+var _ = require('underscore');
+var MetaData = require('../lib/carto_metadata')(redis_config);
+var assert = require('assert');
+var strftime = require('strftime');
 
 suite('metadata', function() {
 
@@ -324,6 +324,19 @@ test('retrieves empty if there are no async slaves', function(done){
             assert.ok(!_.isNumber(renderLimit));
             assert.equal(renderLimit, null);
             done();
+        });
+    });
+
+    var getMapViewKeyDays = [1,2,3,4,5,6,7,8,9,10,11,12,26,30,31];
+    var getMapViewKeyMonths = [0, 11];
+
+    getMapViewKeyMonths.forEach(function(month) {
+        getMapViewKeyDays.forEach(function(day) {
+            test('getMapViewKey format, month=' + month + '; day=' + day, function() {
+                var d = new Date(2016, month, day);
+                var mapViewKey = MetaData.getMapViewKey(d);
+                assert.equal(mapViewKey, strftime("%Y%m%d", d));
+            });
         });
     });
 
