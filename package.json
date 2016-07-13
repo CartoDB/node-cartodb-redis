@@ -4,10 +4,7 @@
     "main": "./lib/carto_metadata.js",
     "description": "A Node.js based lib to interact with cartodb redis databases",
     "url": "https://github.com/cartodb/node-cartodb-redis",
-    "licenses": [{
-        "type": "BSD",
-        "url": "https://github.com/cartodb/node-cartodb-redis/blob/master/LICENCE"
-    }],
+    "license": "BSD-3-Clause",
     "repository": {
         "type": "git",
         "url": "git://github.com/cartodb/node-cartodb-redis.git"
