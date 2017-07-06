@@ -10,7 +10,7 @@ suite('metadata', function() {
 // NOTE: deprecated in 0.2.0
 test('test can retrieve database name from header and redis', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
-    
+
     MetaData.getDatabase(req, function(err, data){
         assert.equal(data, 'cartodb_test_user_1_db');
         done();
@@ -27,7 +27,7 @@ test('can retrieve database name for username', function(done){
 // NOTE: deprecated in 0.2.0
 test('test can retrieve database host from header and redis', function(done){
     var req = {headers: {host: 'vizzuality.cartodb.com'}};
-    
+
     MetaData.getDatabaseHost(req, function(err, data){
         assert.equal(data, 'localhost');
         done();
@@ -323,6 +323,24 @@ test('retrieves empty if there are no async slaves', function(done){
             assert.ok(!err);
             assert.ok(!_.isNumber(renderLimit));
             assert.equal(renderLimit, null);
+            done();
+        });
+    });
+
+    test('can retrieve user timeout limit for public role and it is a number', function(done){
+        MetaData.getUserTimeoutRenderLimits('vizzuality', false, function(err, timeoutLimit) {
+            assert.ifError(err);
+            assert.ok(_.isNumber(timeoutLimit.render));
+            assert.equal(timeoutLimit.render, 4000);
+            done();
+        });
+    });
+
+    test('can retrieve user timeout limit for user\'s role and it is a number', function(done){
+        MetaData.getUserTimeoutRenderLimits('vizzuality', true, function(err, timeoutLimit) {
+            assert.ifError(err);
+            assert.ok(_.isNumber(timeoutLimit.render));
+            assert.equal(timeoutLimit.render, 5000);
             done();
         });
     });

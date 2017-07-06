@@ -27,6 +27,7 @@ HMSET rails:users:vizzuality id 1 \
                              database_password secret map_key 1234
 SADD rails:users:vizzuality:map_key 1235
 HSET limits:tiler:vizzuality render 2000
+HMSET limits:timeout:vizzuality render 5000 render_public 4000
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 0
@@ -45,7 +46,7 @@ HMSET rails:oauth_access_tokens:l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR \
   access_token_token l0lPbtP68ao8NfStCiA3V3neqfM03JKhToxhUQTR \
   access_token_secret 22zBIek567fMDEebzfnSdGe8peMFVFqAreOENaDK \
   user_id 1 \
-  time sometime 
+  time sometime
 EOF
 
 cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
