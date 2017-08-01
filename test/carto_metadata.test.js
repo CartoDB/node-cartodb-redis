@@ -328,19 +328,12 @@ test('retrieves empty if there are no async slaves', function(done){
     });
 
     test('can retrieve user timeout limit for public role and it is a number', function(done){
-        MetaData.getUserTimeoutRenderLimits('vizzuality', false, function(err, timeoutLimit) {
-            assert.ifError(err);
-            assert.ok(_.isNumber(timeoutLimit.render));
-            assert.equal(timeoutLimit.render, 4000);
-            done();
-        });
-    });
-
-    test('can retrieve user timeout limit for user\'s role and it is a number', function(done){
-        MetaData.getUserTimeoutRenderLimits('vizzuality', true, function(err, timeoutLimit) {
+        MetaData.getUserTimeoutRenderLimits('vizzuality', function(err, timeoutLimit) {
             assert.ifError(err);
             assert.ok(_.isNumber(timeoutLimit.render));
             assert.equal(timeoutLimit.render, 5000);
+            assert.ok(_.isNumber(timeoutLimit.renderPublic));
+            assert.equal(timeoutLimit.renderPublic, 4000);
             done();
         });
     });
