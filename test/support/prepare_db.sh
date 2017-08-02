@@ -26,7 +26,6 @@ HMSET rails:users:vizzuality id 1 \
                              database_publicuser publicuser \
                              database_password secret map_key 1234
 SADD rails:users:vizzuality:map_key 1235
-HSET limits:tiler:vizzuality render 2000
 HMSET limits:timeout:vizzuality render 5000 render_public 4000
 EOF
 
