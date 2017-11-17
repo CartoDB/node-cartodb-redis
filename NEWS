@@ -1,6 +1,9 @@
-0.14.1 -- 2017-mm-dd
+1.0.0 -- 2017-mm-dd
 --------------------
-
+- Update Node.js minimum version: 6.4
+- Remove Node.js v0.10 from travis configuration
+- Add function to get API Key: getApiKey
+- Add function to get user's basic info: getUserBasicInfo
 
 0.14.0 -- 2017-08-08
 --------------------
