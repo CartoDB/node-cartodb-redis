@@ -340,7 +340,7 @@ test('retrieves empty if there are no async slaves', function(done){
             }, function (err, dbparams) {
             assert.equal(err, null, "Did not expect an err");
             assert.deepEqual(dbparams, {
-                "type": "localhost",
+                "type": "regular",
                 "user": "vizzuality",
                 "dbRole": "vizzuality_1234",
                 "dbPassword": "1234",
