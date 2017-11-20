@@ -334,17 +334,18 @@ test('retrieves empty if there are no async slaves', function(done){
     });
 
     test('can retrieve an API Key', function (done) {
-        MetaData.getApiKey({
-                username: 'vizzuality',
-                apiKeyToken: '1234567890123456789012345678901234567890'
-            }, function (err, dbparams) {
+        const username = 'vizzuality';
+        const apiKeyToken = '1234567890123456789012345678901234567890';
+        const apiName = 'maps';
+
+        MetaData.getApiKey(username,apiKeyToken, apiName, function (err, dbparams) {
             assert.equal(err, null, "Did not expect an err");
             assert.deepEqual(dbparams, {
                 "type": "regular",
                 "user": "vizzuality",
                 "dbRole": "vizzuality_1234",
                 "dbPassword": "1234",
-                "grants_maps": true
+                "grantsMaps": true
             });
             done();
         });
