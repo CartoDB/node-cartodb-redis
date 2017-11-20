@@ -63,11 +63,9 @@ cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
 HMSET api_keys:vizzuality:1234567890123456789012345678901234567890  \
                              type regular \
                              user vizzuality \
-                             dbRole vizzuality_1234 \
-                             dbPassword 1234 \
+                             db_role vizzuality_1234 \
+                             db_password 1234 \
                              grants_maps true
 EOF
 
 echo "ok, you can run test now"
-
-
