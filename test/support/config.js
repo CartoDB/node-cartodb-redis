@@ -8,7 +8,8 @@ module.exports = function(opts) {
             idleTimeoutMillis: 1, 
             reapIntervalMillis: 1,
             port: 6336
-        }
+        },
+       apiName: 'maps' 
     }
 
     _.extend(config,  opts || {});
