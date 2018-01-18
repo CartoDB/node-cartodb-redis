@@ -11,14 +11,14 @@
     },
     "author": "Vizzuality <contact@vizzuality.com> (http://vizzuality.com)",
     "contributors": [
-      "Simon Tokumine <simon@vizzuality.com>",
-      "Javi Santana <jsantana@vizzuality.com>",
-      "Sandro Santilli <strk@vizzuality.com>"
+        "Simon Tokumine <simon@vizzuality.com>",
+        "Javi Santana <jsantana@vizzuality.com>",
+        "Sandro Santilli <strk@vizzuality.com>"
     ],
     "dependencies": {
         "underscore": "~1.6.0",
         "dot": "~1.0.2",
-        "redis-mpool": "~0.4.1"
+        "redis-mpool": "cartodb/node-redis-mpool#redis4"
     },
     "devDependencies": {
         "strftime": "~0.9.2",
@@ -27,5 +27,7 @@
     "scripts": {
         "test": "./run_tests.sh test/*"
     },
-    "engine": { "node": ">= 0.6 < 0.11" }
+    "engine": {
+        "node": ">= 0.6 < 0.11"
+    }
 }
