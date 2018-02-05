@@ -16,9 +16,9 @@
         "Sandro Santilli <strk@vizzuality.com>"
     ],
     "dependencies": {
-        "underscore": "~1.6.0",
         "dot": "~1.0.2",
-        "redis-mpool": "cartodb/node-redis-mpool#redis4"
+        "redis-mpool": "^0.5.0",
+        "underscore": "~1.6.0"
     },
     "devDependencies": {
         "strftime": "~0.9.2",
