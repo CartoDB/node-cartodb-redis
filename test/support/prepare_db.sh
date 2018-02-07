@@ -59,6 +59,17 @@ ZREMRANGEBYSCORE user:vizzuality:mapviews:stat_tag:foo -inf +inf
 ZINCRBY user:vizzuality:mapviews:global 1 20140101
 EOF
 
+# API Key Master
+cat <<EOF | redis-cli -p ${REDIS_PORT} -n 5
+  HMSET api_keys:vizzuality:1234 \
+    user "vizzuality" \
+    type "master" \
+    grants_sql "true" \
+    grants_maps "true" \
+    database_role "vizzuality_role" \
+    database_password "vizzuality_password"
+EOF
+
 echo "ok, you can run test now"
 
 
