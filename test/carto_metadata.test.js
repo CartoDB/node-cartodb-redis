@@ -339,8 +339,8 @@ test('retrieves empty if there are no async slaves', function(done){
             assert.deepEqual(apikey, {
                 user: 'vizzuality',
                 type: "master",
-                grantsSql: "true",
-                grantsMaps: "true",
+                grantsSql: true,
+                grantsMaps: true,
                 databaseRole: "vizzuality_role",
                 databasePassword: "vizzuality_password"
             });
@@ -354,8 +354,8 @@ test('retrieves empty if there are no async slaves', function(done){
             assert.deepEqual(apikey, {
                 user: 'vizzuality',
                 type: "master",
-                grantsSql: "true",
-                grantsMaps: "true",
+                grantsSql: true,
+                grantsMaps: true,
                 databaseRole: "vizzuality_role",
                 databasePassword: "vizzuality_password"
             });
