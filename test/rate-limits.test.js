@@ -22,35 +22,35 @@ describe('rate limits: getLowerRateLimit', function() {
     it("empty or invalid", function () {
         var limits = [];
         var result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = undefined;
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = null;
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = [[]];
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = [[], []];
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = {};
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = [{}];
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
 
         limits = [[1, 2]];
         result = MetaData.getLowerRateLimit(limits);
-        assert.deepEqual(null, result);
+        assert.deepEqual(undefined, result);
     });
 
     it("multiple limits: valid and invalid", function () {
