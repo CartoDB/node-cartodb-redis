@@ -20,8 +20,8 @@ describe('rate limits: getLowerRateLimit', function() {
     });
 
     it("empty or invalid", function () {
-        let limits = [];
-        let result = MetaData.getLowerRateLimit(limits);
+        var limits = [];
+        var result = MetaData.getLowerRateLimit(limits);
         assert.deepEqual(null, result);
 
         limits = undefined;
@@ -57,8 +57,8 @@ describe('rate limits: getLowerRateLimit', function() {
         var limit1 = [0, 3, 0];
         var limit2 = [0, 3, 1, 0, 1];
 
-        let limits = [limit1, limit2];
-        let result = MetaData.getLowerRateLimit(limits);
+        var limits = [limit1, limit2];
+        var result = MetaData.getLowerRateLimit(limits);
         assert.deepEqual(limit2, result);
 
         limits = [limit2, limit1];
@@ -73,8 +73,8 @@ describe('rate limits: getLowerRateLimit', function() {
         var limit4 = [0, 3, 4, 0, 1];
         var limit5 = [0, 3, 5, 0, 1];
 
-        let limits = [limit1, limit2, limit3, limit4, limit5];
-        let result = MetaData.getLowerRateLimit(limits);
+        var limits = [limit1, limit2, limit3, limit4, limit5];
+        var result = MetaData.getLowerRateLimit(limits);
         assert.deepEqual(limit3, result);
 
         limits = [limit1, limit2];
@@ -89,8 +89,8 @@ describe('rate limits: getLowerRateLimit', function() {
         var limit4 = [0, 3, 4, 0, 1];
         var limit5 = [1, 3, 5, 0, 1];
 
-        let limits = [limit1, limit2, limit3, limit4, limit5];
-        let result = MetaData.getLowerRateLimit(limits);
+        var limits = [limit1, limit2, limit3, limit4, limit5];
+        var result = MetaData.getLowerRateLimit(limits);
         assert.deepEqual(limit5, result);
 
         limits = [limit1, limit2, limit5, limit3, limit4];
