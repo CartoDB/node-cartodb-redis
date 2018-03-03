@@ -14,3 +14,13 @@ addons:
       - g++-4.8
 
 sudo: false
+
+before_install:
+  - wget http://download.redis.io/redis-stable.tar.gz
+  - tar xvzf redis-stable.tar.gz
+  - cd redis-stable
+  - make
+  - sudo make install
+  - cd ..
+  - rm redis-stable.tar.gz
+  
