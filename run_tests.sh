@@ -64,7 +64,7 @@ TESTS=$@
 
 if test x"$OPT_CREATE" = xyes; then
   echo "Starting redis on port ${REDIS_PORT}"
-  echo "port ${REDIS_PORT}" | redis-server - > ${BASEDIR}/test.log &
+  echo "port ${REDIS_PORT}" | redis-server - --loadmodule ./libredis_cell.so > ${BASEDIR}/test.log &
   PID_REDIS=$!
   echo ${PID_REDIS} > ${BASEDIR}/redis.pid
   sleep 1 # wait a bit for it to start (there must be a better way!)
