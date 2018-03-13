@@ -158,3 +158,28 @@ describe('rate limits: getRateLimit', function() {
         });
     });
 });
+
+describe('rate limits: invalid limits', function() {
+    it("should no return a rate limit if limit values are empty", function (done) {
+        var storeKey = MetaData.rate_limits_store_key({ 
+            username: user,
+            app: app,
+            endpointGroup: endpointGroup
+        });
+
+        MetaData.redisCmd(
+            MetaData.rate_limits_db,
+            'DEL',
+            [storeKey],
+            function() {
+                MetaData.getRateLimit(user, app, endpointGroup, function (err, rateLimit) {
+                    assert.ifError(err);
+                    assert.ifError(rateLimit);
+                    done();
+                });
+            }
+        )
+
+    });
+
+});
