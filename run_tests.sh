@@ -50,7 +50,6 @@ get_redis_cell() {
 trap 'cleanup_and_exit' 1 2 3 5 9 13
 
 while [ -n "$1" ]; do
-  echo "---> $1"
         if test "$1" = "--nodrop"; then
                 OPT_DROP=no
                 shift
