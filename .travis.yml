@@ -16,10 +16,10 @@ addons:
 sudo: false
 
 before_install:
-  - wget http://download.redis.io/redis-stable.tar.gz
-  - tar xvzf redis-stable.tar.gz
-  - cd redis-stable
+  - wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+  - tar xvzf redis-4.0.8.tar.gz
+  - cd redis-4.0.8
   - make
   - sudo make install
   - cd ..
-  - rm redis-stable.tar.gz
+  - rm redis-4.0.8.tar.gz
