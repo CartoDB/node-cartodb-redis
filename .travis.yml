@@ -1,6 +1,5 @@
 language: node_js
 node_js:
-  - "0.10"
   - "6"
 
 env:
@@ -14,3 +13,12 @@ addons:
       - g++-4.8
 
 sudo: false
+
+before_install:
+  - wget http://download.redis.io/releases/redis-4.0.8.tar.gz
+  - tar xvzf redis-4.0.8.tar.gz
+  - cd redis-4.0.8
+  - make
+  - sudo make install
+  - cd ..
+  - rm redis-4.0.8.tar.gz
