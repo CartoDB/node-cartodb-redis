@@ -3,4 +3,3 @@ redis.pid
 test.log
 npm-debug.log
 .idea/
-libredis_cell.so
