@@ -1,0 +1,9 @@
+node_modules*
+redis.pid
+test.log
+npm-debug.log
+.idea/
+test/
+.travis.yml
+run_tests.sh
+Makefile
