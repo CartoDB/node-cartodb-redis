@@ -1,3 +1,7 @@
+0.17.0 -- 2018-XX-XX
+--------------------
+- Remove Auth Fallback
+
 0.16.0 -- 2018-02-28
 --------------------
 - Add functions to get API keys
