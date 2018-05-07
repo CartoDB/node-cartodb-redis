@@ -1,7 +1,7 @@
 #!/bin/sh
 
-OPT_CREATE=yes # create the test environment
-OPT_DROP=yes   # drop the test environment
+OPT_CREATE=yes      # create the test environment
+OPT_DROP=yes        # drop the test environment
 
 cd $(dirname $0)
 BASEDIR=$(pwd)
@@ -55,8 +55,8 @@ done
 if [ -z "$1" ]; then
         echo "Usage: $0 [<options>] <test> [<test>]" >&2
         echo "Options:" >&2
-        echo " --nocreate   do not create the test environment on start" >&2
-        echo " --nodrop     do not drop the test environment on exit" >&2
+        echo " --nocreate     do not create the test environment on start" >&2
+        echo " --nodrop       do not drop the test environment on exit" >&2
         exit 1
 fi
 
@@ -64,7 +64,11 @@ TESTS=$@
 
 if test x"$OPT_CREATE" = xyes; then
   echo "Starting redis on port ${REDIS_PORT}"
-  echo "port ${REDIS_PORT}" | redis-server - > ${BASEDIR}/test.log &
+  REDIS_CELL_PATH="${BASEDIR}/test/support/libredis_cell.so"
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    REDIS_CELL_PATH="${BASEDIR}/test/support/libredis_cell.dylib"
+  fi
+  echo "port ${REDIS_PORT}" | redis-server - --loadmodule ${REDIS_CELL_PATH} > ${BASEDIR}/test.log &
   PID_REDIS=$!
   echo ${PID_REDIS} > ${BASEDIR}/redis.pid
   sleep 1 # wait a bit for it to start (there must be a better way!)

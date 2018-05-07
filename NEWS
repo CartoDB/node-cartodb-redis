@@ -1,6 +1,13 @@
-0.17.0 -- 2018-XX-XX
+1.0.1 -- 201y-mm-dd
 --------------------
 - Remove Auth Fallback
+
+1.0.0 -- 2018-03-19
+--------------------
+- Breaking change:
+    - Needs Redis v4
+- Rate limit functions
+- Updating minimum node version to 6.9.0 (it is not a breaking change, for now)
 
 0.16.0 -- 2018-02-28
 --------------------
