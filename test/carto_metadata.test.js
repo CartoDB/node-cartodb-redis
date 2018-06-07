@@ -362,4 +362,19 @@ test('retrieves empty if there are no async slaves', function(done){
             done();
         });
     });
+
+    test('should return empty API key if it does not exist', function (done) {
+        MetaData.getApikey('vizzuality', 'THIS_API_KEY_DOES_NOT_EXIST', function (err, apikey) {
+            assert.equal(err, null);
+            assert.deepEqual(apikey, {
+                user: null,
+                type: null,
+                grantsSql: false,
+                grantsMaps: false,
+                databaseRole: null,
+                databasePassword: null
+            });
+            done();
+        });
+    });
 });
