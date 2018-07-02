@@ -112,7 +112,7 @@ function assertGetRateLimitRequest(isBlocked, limit, remaining, retry, reset, do
 
 describe('rate limits: getRateLimit', function() {
     before(function(done) {
-        var storeKey = MetaData.rate_limits_store_key({ 
+        var storeKey = MetaData.rate_limits_store_key({
             username: user,
             app: app,
             endpointGroup: endpointGroup
@@ -122,6 +122,21 @@ describe('rate limits: getRateLimit', function() {
             MetaData.rate_limits_db,
             'RPUSH',
             [storeKey, 1, 1, 1],
+            done
+        )
+    });
+
+    after(function(done) {
+        var storeKey = MetaData.rate_limits_store_key({
+            username: user,
+            app: app,
+            endpointGroup: endpointGroup
+        });
+
+        MetaData.redisCmd(
+            MetaData.rate_limits_db,
+            'DEL',
+            [storeKey],
             done
         )
     });
@@ -139,7 +154,7 @@ describe('rate limits: getRateLimit', function() {
 
     it('should work with loadRateLimitsScript', function (done) {
         this.timeout(5000);
-        
+
         MetaData.loadRateLimitsScript(function(err) {
             assert.ifError(err);
             assertGetRateLimitRequest(0, 2, 1, -1, 1, done);
@@ -148,7 +163,7 @@ describe('rate limits: getRateLimit', function() {
 
     it('should work after lose loadRateLimitsScript', function (done) {
         this.timeout(5000);
-        
+
         MetaData.loadRateLimitsScript(function(err) {
             assert.ifError(err);
 
@@ -159,9 +174,58 @@ describe('rate limits: getRateLimit', function() {
     });
 });
 
+describe('rate limits: getRateLimit with several limits', function() {
+    before(function(done) {
+        var storeKey = MetaData.rate_limits_store_key({
+            username: user,
+            app: app,
+            endpointGroup: endpointGroup
+        });
+
+        MetaData.redisCmd(
+            MetaData.rate_limits_db,
+            'RPUSH',
+            [storeKey, 10, 10, 1, 60, 120, 60],
+            done
+        )
+    });
+
+    after(function(done) {
+        var storeKey = MetaData.rate_limits_store_key({
+            username: user,
+            app: app,
+            endpointGroup: endpointGroup
+        });
+
+        MetaData.redisCmd(
+            MetaData.rate_limits_db,
+            'DEL',
+            [storeKey],
+            done
+        )
+    });
+
+    it("should removing one every request", function (done) {
+        this.timeout(5000);
+
+        assertGetRateLimitRequest(0, 11, 10, -1, 0);
+        assertGetRateLimitRequest(0, 11, 9, -1, 0);
+        assertGetRateLimitRequest(0, 11, 8, -1, 0);
+        assertGetRateLimitRequest(0, 11, 7, -1, 0);
+        assertGetRateLimitRequest(0, 11, 6, -1, 0);
+        assertGetRateLimitRequest(0, 11, 5, -1, 0);
+        assertGetRateLimitRequest(0, 11, 4, -1, 0);
+        assertGetRateLimitRequest(0, 11, 3, -1, 0);
+        assertGetRateLimitRequest(0, 11, 2, -1, 0);
+        assertGetRateLimitRequest(0, 11, 1, -1, 0);
+        assertGetRateLimitRequest(0, 11, 0, -1, 1);
+        assertGetRateLimitRequest(1, 11, 0, 0, 1, done);
+    });
+});
+
 describe('rate limits: invalid limits', function() {
     it("should no return a rate limit if limit values are empty", function (done) {
-        var storeKey = MetaData.rate_limits_store_key({ 
+        var storeKey = MetaData.rate_limits_store_key({
             username: user,
             app: app,
             endpointGroup: endpointGroup
