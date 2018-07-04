@@ -102,32 +102,24 @@ test('retrieves empty if there are no async slaves', function(done){
 });
 
     test('infowindow', function(done) {
-        var req = {
-            headers: {
-                host: 'vizzuality.cartodb.com'
-            },
-            params: {
-                table: 'public'
-            }
-        };
-        MetaData.getInfowindow(req, function(err, info) {
-            assert.equal(info, 'wadus');
-            done();
+        var table = 'public';
+
+        MetaData.getUserDBName('vizzuality', function(err, dbname) {
+            MetaData.getTableInfowindow(dbname, table, function(err, info) {
+                assert.equal(info, 'wadus');
+                done();
+            });
         });
     });
 
     test('infowindow', function(done) {
-        var req = {
-            headers: {
-                host: 'vizzuality.cartodb.com'
-            },
-            params: {
-                table: 'public'
-            }
-        };
-        MetaData.getMapMetadata(req, function(err, meta) {
-            assert.equal(meta, 'foobar');
-            done();
+        var table = 'public';
+
+        MetaData.getUserDBName('vizzuality', function(err, dbname) {
+            MetaData.getTableMapMetadata(dbname, table, function(err, meta) {
+                assert.equal(meta, 'foobar');
+                done();
+            });
         });
     });
 
