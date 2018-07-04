@@ -7,15 +7,6 @@ var strftime = require('strftime');
 
 suite('metadata', function() {
 
-// NOTE: deprecated in 0.2.0
-test('test can retrieve database name from header and redis', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}};
-
-    MetaData.getDatabase(req, function(err, data){
-        assert.equal(data, 'cartodb_test_user_1_db');
-        done();
-    });
-});
 
 test('can retrieve database name for username', function(done){
     MetaData.getUserDBName('vizzuality', function(err, data){
@@ -23,17 +14,6 @@ test('can retrieve database name for username', function(done){
         done();
     });
 });
-
-// NOTE: deprecated in 0.2.0
-test('test can retrieve database host from header and redis', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}};
-
-    MetaData.getDatabaseHost(req, function(err, data){
-        assert.equal(data, 'localhost');
-        done();
-    });
-});
-
 
 test('can retrieve database host for username', function(done){
     MetaData.getUserDBHost('vizzuality', function(err, data){
@@ -45,16 +25,6 @@ test('can retrieve database host for username', function(done){
 test('can retrieve database password for username', function(done){
     MetaData.getUserDBPass('vizzuality', function(err, data){
         assert.equal(data, 'secret');
-        done();
-    });
-});
-
-// NOTE: deprecated in 0.2.0
-test('test can retrieve id from header and redis', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}};
-
-    MetaData.getId(req, function(err, data){
-        assert.equal(data, '1');
         done();
     });
 });
@@ -78,25 +48,6 @@ test('can retrieve table privacy for public table', function(done){
         MetaData.getTablePrivacy('cartodb_test_user_1_db', 'private', function(err, privacy) {
             assert.ok(!err, err);
             assert.equal(privacy, '0'); // private has privacy=0
-            done();
-        });
-    });
-
-// NOTE: deprecated in 0.2.0
-test('can retrieve table geometry type from request header and params for public table', function(done){
-    var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {table: 'public'} };
-
-    MetaData.getGeometryType(req, function(err, geometryType) {
-        assert.equal(geometryType, 'geometry');
-        done();
-    });
-});
-
-    // NOTE: deprecated in 0.2.0
-    test('can retrieve table geometry type from request header and params for private table', function(done){
-        var req = {headers: {host: 'vizzuality.cartodb.com'}, params: {table: 'private'} };
-        MetaData.getGeometryType(req, function(err, geometryType) {
-            assert.equal(geometryType, 'point');
             done();
         });
     });
