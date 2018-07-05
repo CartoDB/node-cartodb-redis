@@ -80,7 +80,7 @@ fi
 PATH=node_modules/.bin/:$PATH
 
 echo "Running tests"
-mocha -t 500 -u tdd ${MOCHA_OPTS} ${TESTS}
+mocha -t 500 -u tdd ${MOCHA_OPTS} ${TESTS} --exit
 ret=$?
 
 cleanup
