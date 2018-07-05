@@ -1,6 +1,6 @@
 2.0.1 -- 2018-mm-dd
 --------------------
-
+- Fix rate limit of an endpoint with several limits (#27)
 
 2.0.0 -- 2018-07-05
 --------------------
