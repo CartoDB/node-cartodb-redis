@@ -1,4 +1,4 @@
-2.0.0 -- 201y-mm-dd
+2.0.0 -- 2018-07-05
 --------------------
 - Breaking changes:
     - Removing deprecated methods: getId, getDatabase, getDatabaseHost, getDatabasePassword, getMapMetadata,
