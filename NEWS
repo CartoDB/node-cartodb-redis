@@ -1,6 +1,9 @@
-1.0.2 -- 201y-mm-dd
+2.0.0 -- 201y-mm-dd
 --------------------
-- 
+- Breaking changes:
+    - Removing deprecated methods: getId, getDatabase, getDatabaseHost, getDatabasePassword, getMapMetadata,
+      getGeometryType, getInfowindow, checkMapKey, checkAPIKey and userFromHostname
+- Upgrades mocha to 5.2.0
 
 1.0.1 -- 2018-06-07
 --------------------
@@ -19,7 +22,7 @@
 
 0.15.0 -- 2018-02-05
 --------------------
-- Upgrades redis-mpool to 0.5.0 
+- Upgrades redis-mpool to 0.5.0
 
 0.14.0 -- 2017-08-08
 --------------------
