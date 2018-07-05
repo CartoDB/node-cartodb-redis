@@ -1,6 +1,6 @@
 {
     "name": "cartodb-redis",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "main": "./lib/carto_metadata.js",
     "description": "A Node.js based lib to interact with cartodb redis databases",
     "url": "https://github.com/cartodb/node-cartodb-redis",
