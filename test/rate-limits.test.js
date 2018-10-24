@@ -1,3 +1,5 @@
+'use strict';
+
 var assert = require('assert');
 var redis_config = require('./support/config').redis_pool;
 var MetaData = require('../lib/carto_metadata')(redis_config);

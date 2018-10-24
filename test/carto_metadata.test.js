@@ -1,3 +1,5 @@
+'use strict';
+
 var redis_config = require('./support/config').redis_pool;
 
 var _ = require('underscore');
