@@ -1,6 +1,6 @@
 2.0.2 -- 2018-mm-dd
 --------------------
-
+- Make all modules to use strict mode semantics.
 
 2.0.1 -- 2018-07-05
 --------------------
