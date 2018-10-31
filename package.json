@@ -17,7 +17,7 @@
     ],
     "dependencies": {
         "dot": "~1.0.2",
-        "redis-mpool": "^0.5.0",
+        "redis-mpool": "github:cartodb/node-redis-mpool#nodejs-10",
         "underscore": "~1.6.0"
     },
     "devDependencies": {
