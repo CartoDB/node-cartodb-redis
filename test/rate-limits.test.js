@@ -1,7 +1,13 @@
 'use strict';
 
 var assert = require('assert');
-var redis_config = require('./support/config').redis_pool;
+const redis_config = {
+    max: 10,
+    idleTimeoutMillis: 1,
+    reapIntervalMillis: 1,
+    port: 6336
+}
+
 var MetaData = require('../lib/carto_metadata')(redis_config);
 
 var user = 'vizzuality';
