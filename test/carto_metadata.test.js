@@ -1,8 +1,12 @@
 'use strict';
 
-var redis_config = require('./support/config').redis_pool;
+const redis_config = {
+    max: 10,
+    idleTimeoutMillis: 1,
+    reapIntervalMillis: 1,
+    port: 6336
+}
 
-var _ = require('underscore');
 var MetaData = require('../lib/carto_metadata')(redis_config);
 var assert = require('assert');
 var strftime = require('strftime');
@@ -242,7 +246,7 @@ test('retrieves empty if there are no async slaves', function(done){
             consoleLogFunc.apply(console, arguments);
         };
 
-        var cartoMetadata = require('../lib/carto_metadata')(_.extend(redis_config, enabledSlowQueriesConfig));
+        var cartoMetadata = require('../lib/carto_metadata')(Object.assign(redis_config, enabledSlowQueriesConfig));
 
         cartoMetadata.getAllUserDBParams('vizzuality', function(/*err, dbParams*/) {
             console.log = consoleLogFunc;
@@ -257,9 +261,9 @@ test('retrieves empty if there are no async slaves', function(done){
     test('can retrieve user timeout limit for public role and it is a number', function(done){
         MetaData.getUserTimeoutRenderLimits('vizzuality', function(err, timeoutLimit) {
             assert.ifError(err);
-            assert.ok(_.isNumber(timeoutLimit.render));
+            assert.ok(Number.isInteger(timeoutLimit.render));
             assert.equal(timeoutLimit.render, 5000);
-            assert.ok(_.isNumber(timeoutLimit.renderPublic));
+            assert.ok(Number.isInteger(timeoutLimit.renderPublic));
             assert.equal(timeoutLimit.renderPublic, 4000);
             done();
         });
