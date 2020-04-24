@@ -24,7 +24,9 @@
         "strftime": "~0.9.2"
     },
     "scripts": {
-        "test": "./run_tests.sh test/*"
+        "pretest": "./pre_tests.sh",
+        "test": "mocha --exit",
+        "posttest": "./post_tests.sh"
     },
     "engine": {
         "node": ">= 6.9.0"
