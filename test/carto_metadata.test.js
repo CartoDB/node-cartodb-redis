@@ -232,14 +232,9 @@ test('retrieves empty if there are no async slaves', function(done){
         };
         var consoleLogFunc = console.log;
         console.log = function(what) {
-            var whatObj;
-            try {
-                whatObj = JSON.parse(what);
-            } catch (e) {
-                // pass
-            }
-            logWasCalled = whatObj && whatObj.action && whatObj.action === 'query';
-            consoleLogFunc.apply(console, arguments);
+            logWasCalled = what && what.action && what.action === 'query';
+            // uncomment following line for debugging
+            // consoleLogFunc.apply(console, arguments);
         };
 
         var cartoMetadata = require('../lib/carto_metadata')(_.extend(redis_config, enabledSlowQueriesConfig));
