@@ -1,4 +1,4 @@
-3.0.0 -- 2020-mm-dd
+3.0.0 -- 2020-05-13
 --------------------
 - Upgrade `redis-mpool` version to 0.8.0
 - Support Node.js 12
