@@ -24,7 +24,8 @@ HMSET rails:users:vizzuality id 1 \
                              database_name ${TEST_DB} \
                              database_host localhost \
                              database_publicuser publicuser \
-                             database_password secret map_key 1234
+                             database_password secret map_key 1234 \
+                             streaming_mode false
 SADD rails:users:vizzuality:map_key 1235
 HMSET limits:timeout:vizzuality render 5000 render_public 4000
 EOF

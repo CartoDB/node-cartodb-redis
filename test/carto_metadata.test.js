@@ -154,7 +154,8 @@ test('retrieves empty if there are no async slaves', function(done){
                 "dbpublicuser": "publicuser",
                 "dbuser": "1",
                 "dbpass": "secret",
-                "apikey": "1234"
+                "apikey": "1234",
+                "streamingmode": "false"
             });
             done();
         });
