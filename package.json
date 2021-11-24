@@ -19,7 +19,7 @@
     "dependencies": {
         "dot": "~1.0.2",
         "redis-mpool": "^0.8.0",
-        "underscore": "~1.6.0"
+        "underscore": "~1.12.1"
     },
     "devDependencies": {
         "mocha": "^5.2.0",
