@@ -17,7 +17,7 @@
         "Daniel García Aubert <dgaubert@carto.com>"
     ],
     "dependencies": {
-        "dot": "~1.0.2",
+        "dot": "~1.1.3",
         "redis-mpool": "^0.8.0",
         "underscore": "~1.6.0"
     },
